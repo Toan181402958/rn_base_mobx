@@ -1,0 +1,15 @@
+{
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "@src": "./src/",
+            "@R": "./src/assets/R.tsx",
+            "@util": "./src/utils/"
+          }
+        }
+      ]
+    ]
+  }
+  
