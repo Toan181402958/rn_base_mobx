@@ -49,6 +49,16 @@ jobs:
         with:
           name: app-debug.apk
           path: android/app/build/outputs/apk/release/app-release.apk
+      - name: Cache NodeModules
+        use: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ${{ github.workspace }}/android/.gradle
+            ~/.gradle
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install Firebase Cli
         run: |
           yarn global add firebase-tools
