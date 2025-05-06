@@ -58,10 +58,9 @@ jobs:
           echo "${{ secrets.FIREBASE_CREDENTIALS_JSON }}" | base64 -d > firebase.json
       - name: Upload to Firebase App Distribution
         run: |
-          firebase auth:login:ci --no-localhost
           firebase appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
             --app 1:363019288417:android:5497f197fb0c8c5901cf20 \
-            --token "$(firebase login:ci)" \
+            --token "$FIREBASE_TOKEN" \
             --release-notes "New build from GitHub Actions" \
             --groups "Tester"
         env:
