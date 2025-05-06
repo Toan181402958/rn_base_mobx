@@ -2,7 +2,7 @@ name: Build APK (React Native)
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
 
 jobs:
   build:
