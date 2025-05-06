@@ -13,6 +13,8 @@ import {
 import React, {useEffect} from 'react';
 import {useColorScheme} from 'react-native';
 import AppContainer from './AppContainer';
+import {Provider} from 'react-redux';
+import store from '@src/services/StoreRedux';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -63,7 +65,11 @@ function App(): React.JSX.Element {
     };
   }, []);
 
-  return <AppContainer />;
+  return (
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  );
 }
 
 export default App;

@@ -10,10 +10,12 @@ import TestScreen from '@src/modules/test';
 import UIStore from '@src/shared/store/ui';
 import UserStore from '@src/shared/store/user';
 import CreateStore from '@src/shared/store/create';
+import ListScroll from '@src/modules/test/ListScroll';
 
 const APP_STACK = {
   [ROUTER_APP.RELOAD]: PreloadScreen,
   [ROUTER_APP.TEST]: TestScreen,
+  [ROUTER_APP.LIST_SCROLL]: ListScroll,
 };
 const StackApp = (
   uiStore: UIStore,

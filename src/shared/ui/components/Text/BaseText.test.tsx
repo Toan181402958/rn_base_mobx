@@ -19,7 +19,7 @@ describe('BaseText Component', () => {
   it('check onpress', () => {
     const onPressMock = jest.fn();
     const {getByText} = render(
-      <BaseText content="hello sir" onpress={onPressMock} />,
+      <BaseText content="hello sir" onPress={onPressMock} />,
     );
     fireEvent.press(getByText('hello sir'));
     expect(onPressMock).toHaveBeenCalled();

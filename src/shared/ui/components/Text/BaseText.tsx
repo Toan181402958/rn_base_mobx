@@ -1,27 +1,10 @@
 import React from 'react';
-import {StyleProp, StyleSheet, Text, TextStyle, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 // import SkeletonLoader from './SkeletonLoader';
-import AppStyle from '../styles/app.styles';
-import R from '../../../assets/R';
-import Skeleton from './Skeleton';
+import AppStyle from '../../styles/app.styles';
+import {BaseTextProps} from './BaseText.props';
 
-type Props = {
-  content: string;
-  style?: StyleProp<TextStyle>;
-  fontSize?: number;
-  fontWeight?: '400' | '500' | '600' | '700' | '800';
-  lineHeight?: number;
-  fontFamily?:
-    | 'BeVietnamPro-Regular'
-    | 'BeVietnamPro-Medium'
-    | 'BeVietnamPro-SemiBold';
-  letterSpacing?: number;
-  numberOfLines?: number;
-  color?: string;
-  isLoading?: boolean;
-  onpress?: () => void;
-};
-const BaseText = (props: Props) => {
+const BaseText = (props: BaseTextProps) => {
   const {
     content,
     style,
@@ -33,11 +16,11 @@ const BaseText = (props: Props) => {
     numberOfLines,
     color = '#1F2128',
     isLoading,
-    onpress,
+    onPress,
   } = props;
   return (
     <Text
-      onPress={onpress}
+      onPress={onPress}
       numberOfLines={numberOfLines}
       style={[
         styles.txt,

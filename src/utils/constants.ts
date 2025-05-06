@@ -8,6 +8,7 @@ const ROUTER_APP = {
     RELOAD: 'Reload',
     HOME: 'Home',
     ACCOUNT: 'Account',
+    LIST_SCROLL: 'ListScroll'
 }
 const TYPE_LANGUAGE = {
     EN: 'en',

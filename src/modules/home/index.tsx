@@ -10,6 +10,9 @@ import {styleView} from '@src/shared/ui/styles/styleView';
 import R from '@src/assets/R';
 import {ROUTER_APP, TYPE_LANGUAGE} from '@src/utils/constants';
 import navigationHelper from '@src/utils/navigationHelper';
+import {useTheme} from '@src/services/ThemeContext';
+import {useDispatch, useSelector} from 'react-redux';
+import {homeState} from './slices/homeSlice';
 
 type Props = {
   uiStore: UIStore;
@@ -17,9 +20,11 @@ type Props = {
 
 const HomeScreen = observer(({uiStore}: Props) => {
   // const {uiStore, userStore} = useStores();
+  const {isDarkMode, toggleTheme} = useTheme();
+  const stateHome = useSelector(homeState);
 
   useEffect(() => {
-    console.log('change locale home screen', uiStore);
+    console.log('change locale home screen', stateHome);
   }, [uiStore.locale]);
   return (
     <ScreenWrapper
@@ -36,6 +41,22 @@ const HomeScreen = observer(({uiStore}: Props) => {
               title={'nav test'}
               onPress={() => {
                 navigationHelper.navigate(ROUTER_APP.TEST);
+              }}
+            />
+          )}
+          {__DEV__ && (
+            <Button
+              title={'nav list scroll'}
+              onPress={() => {
+                navigationHelper.navigate(ROUTER_APP.LIST_SCROLL);
+              }}
+            />
+          )}
+          {__DEV__ && (
+            <Button
+              title={isDarkMode ? 'dark' : 'light'}
+              onPress={() => {
+                toggleTheme();
               }}
             />
           )}

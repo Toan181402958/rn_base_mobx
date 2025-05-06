@@ -8,11 +8,13 @@ import {ParamListBase, RouteProp} from '@react-navigation/native';
 import R from '@src/assets/R';
 import {TYPE_LANGUAGE} from '@src/utils/constants';
 import {styleIcon, styleView} from '@src/shared/ui/styles/styleView';
-import BaseText from '@src/shared/ui/components/BaseText';
+import BaseText from '@src/shared/ui/components/Text/BaseText';
 import Skeleton from '@src/shared/ui/components/Skeleton';
 import FstImage from '@src/shared/ui/components/FstImage';
 import {Block} from '@src/shared/ui/components/Block/Block';
 import navigationHelper from '@src/utils/navigationHelper';
+import {ButtonPrimary} from '@src/shared/ui/components/Button/ButtonPrimary';
+import {API_URL} from '@env';
 
 type Props = {
   uiStore: UIStore;
@@ -20,6 +22,15 @@ type Props = {
 
 const TestScreen = observer(({uiStore}: Props) => {
   useEffect(() => {}, [uiStore.locale]);
+  const testEnv = async () => {
+    try {
+      console.log('api_url', API_URL);
+      const response = await fetch(`${API_URL}/posts`);
+      const json = await response.json();
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
   return (
     <ScreenWrapper
       children={
@@ -29,22 +40,15 @@ const TestScreen = observer(({uiStore}: Props) => {
             title={'change locale'}
             onPress={() => {
               navigationHelper.goBack();
-              // uiStore.changeLocale(
-              //   uiStore.locale === TYPE_LANGUAGE.EN
-              //     ? TYPE_LANGUAGE.VI
-              //     : TYPE_LANGUAGE.EN,
-              // );
             }}
           />
-          <FstImage
-            source={R.images.ic_home}
-            style={{height: 300, width: 300}}
+          <ButtonPrimary
+            onPress={() => {
+              testEnv();
+            }}
+            title="button"
+            iconRight={R.images.ic_home}
           />
-          <Block
-            height={30}
-            width={400}
-            direction="row"
-            color={AppStyle.Colors.primary}></Block>
         </View>
       }
     />

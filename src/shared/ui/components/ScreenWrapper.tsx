@@ -1,20 +1,19 @@
-import R from '@src/assets/R';
-import navigationHelper from '@src/utils/navigationHelper';
 import React from 'react';
 import {
   Image,
-  Keyboard,
   KeyboardAvoidingView,
   Platform,
   StatusBar,
   StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import BaseText from './BaseText';
 import {paddingTop} from '../styles/common.styles';
 import IndicatorLoading from './IndicatorLoading';
+import BaseText from './Text/BaseText';
+import R from '@src/assets/R';
+import {styleIcon} from '../styles/styleView';
+import navigationHelper from '@src/utils/navigationHelper';
 
 type Props = {
   backgroundColor?: string;
@@ -82,12 +81,23 @@ type PropsHeader = {
   offsetTitle: 'center' | 'flex-start' | 'flex-end';
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  isBack?: boolean;
   onPressRight?: () => void;
 };
 const HeaderWrapper = (props: PropsHeader) => {
-  const {title, offsetTitle, iconLeft, iconRight, onPressRight} = props;
+  const {title, offsetTitle, iconLeft, iconRight, isBack, onPressRight} = props;
   return (
     <View style={stylesHeader.container}>
+      <TouchableOpacity
+        style={stylesHeader.btn_back}
+        onPress={() => {
+          navigationHelper.goBack();
+        }}>
+        <Image
+          style={stylesHeader.ic_back}
+          source={R.images.ic_arrow_right_black}
+        />
+      </TouchableOpacity>
       <View style={[stylesHeader.center, {alignItems: offsetTitle}]}>
         {!!title && (
           <BaseText
@@ -131,6 +141,17 @@ const stylesHeader = StyleSheet.create({
   leftIcon: {
     width: 7,
     height: 14,
+  },
+  btn_back: {
+    padding: 4,
+  },
+  ic_back: {
+    ...styleIcon.icon24,
+    transform: [
+      {
+        rotate: '180deg',
+      },
+    ],
   },
 });
 

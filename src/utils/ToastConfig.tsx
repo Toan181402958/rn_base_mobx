@@ -1,4 +1,4 @@
-import BaseText from '@src/shared/ui/components/BaseText';
+import BaseText from '@src/shared/ui/components/Text/BaseText';
 import {paddingTop} from '@src/shared/ui/styles/common.styles';
 import {styleView} from '@src/shared/ui/styles/styleView';
 import React from 'react';

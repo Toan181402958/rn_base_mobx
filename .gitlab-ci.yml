@@ -1,0 +1,43 @@
+variables:
+  ANDROID_COMPILE_SDK: '35'
+  ANDROID_BUILD_TOOLS: '35.0.0'
+  ANDROID_SDK_TOOLS: '36.0.0'
+
+# Cache để tăng tốc độ build
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .gradle/
+    - build/
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: registry.gitlab.com/gitlab-org/android-ci-image:latest
+  before_script:
+    - export GRADLE_USER_HOME=$(pwd)/.gradle
+    - chmod +x ./gradlew
+  script:
+    - ./gradlew assembleRelease
+  artifacts:
+    paths:
+      - app/build/outputs/apk/debug/app-debug.apk
+    expire_in: 1 week
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying APK..."
+    - mkdir -p public
+    - cp app/build/outputs/apk/debug/app-debug.apk public/
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 week
+  only:
+    - main

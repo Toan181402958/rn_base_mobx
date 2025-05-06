@@ -10,6 +10,7 @@ class AppDelegate: RCTAppDelegate {
     self.moduleName = "project_demo"
     self.dependencyProvider = RCTAppDependencyProvider()
 
+
     FirebaseApp.configure()
 
     // You can add your custom initial props in the dictionary below.
