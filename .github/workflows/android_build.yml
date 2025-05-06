@@ -60,7 +60,7 @@ jobs:
         run: |
           firebase auth:login:ci --no-localhost
           firebase appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
-            --app <your_firebase_app_id> \
+            --app 1:363019288417:android:5497f197fb0c8c5901cf20 \
             --token "$(firebase login:ci)" \
             --release-notes "New build from GitHub Actions" \
             --groups "Tester"
