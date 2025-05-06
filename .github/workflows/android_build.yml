@@ -50,7 +50,7 @@ jobs:
           name: app-debug.apk
           path: android/app/build/outputs/apk/release/app-release.apk
       - name: Cache NodeModules
-        use: actions/cache@v3
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
